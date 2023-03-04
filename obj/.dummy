@@ -1,0 +1,2 @@
+Sometimes the "obj" folder must be made explicitly before building. This file is here so you don't need to do that.
+(There are of course other ways to do this, but this solution was the laziest at the time.)
