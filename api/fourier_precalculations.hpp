@@ -1,3 +1,7 @@
+// fourier_precalculations.hpp
+// ---------------------------
+// Container class for precalculations used to speed up lft transformer performance.
+
 #ifndef LFT_FOURIER_PRECALCULATIONS_HPP_INCLUDED
 #define LFT_FOURIER_PRECALCULATIONS_HPP_INCLUDED
 
@@ -6,8 +10,10 @@
 
 #include "fourier_precalculations_single.hpp"
 
+// Precalculations used to speed up fourier transformers.
 class fourier_precalculations {
 public:
+    // Constructors
     fourier_precalculations(double sample_len, double sin_count, double step);
 
     fourier_precalculations(const fourier_precalculations &other) :
@@ -31,6 +37,7 @@ public:
         other._cos_sin_table_len = 0;
     }
 
+    // Operator overloads
     fourier_precalculations &operator=(const fourier_precalculations &other) {
         _sample_len        = other._sample_len;
         _sin_count         = other._sin_count;
@@ -54,6 +61,7 @@ public:
         return *this;
     }
 
+    // Getters and setters
     inline double get_sample_len() const
         { return _sample_len; }
     inline double get_sin_count() const
@@ -69,11 +77,11 @@ public:
 
 private:
     // Keep data in this order for initialization.
-     double _sample_len;
-     double _sin_count;
-     double _step;
-     size_t _cos_sin_table_len;
-     std::vector<fourier_precalculations_single> _cos_sin_table;
+    double _sample_len;
+    double _sin_count;
+    double _step;
+    size_t _cos_sin_table_len;
+    std::vector<fourier_precalculations_single> _cos_sin_table;
 };
 
 #endif // LFT_FOURIER_PRECALCULATIONS_HPP_INCLUDED
